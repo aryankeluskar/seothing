@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/aryankeluskar/SEOthing/blob/master/SEOthing/assets/SEOthing.png?raw=true" alt="SEOthing Banner" />
+<img src="https://raw.githubusercontent.com/aryankeluskar/seothing/refs/heads/master/assets/SEOthing.png" alt="SEOthing Banner" />
 </div>
 
 <h2 align="center">CLI tool that converts images to WebP format and auto-updates all references for better web performance.</h2>
