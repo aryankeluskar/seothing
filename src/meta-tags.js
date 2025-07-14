@@ -76,6 +76,7 @@ const META_TAGS_CONFIG = {
 class MetaTagsAnalyzer {
   constructor(apiKey) {
     this.apiKey = apiKey;
+    console.log( "apiKey", this.apiKey);
     this.genAI = new GoogleGenAI({ apiKey });
   }
 

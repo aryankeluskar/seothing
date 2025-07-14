@@ -25,12 +25,12 @@ program
     try {
       // Print the logo using oh-my-logo module
       const { renderFilled } = await import("oh-my-logo");
-      const logo = await renderFilled("seothing", {
+      await renderFilled("seothing", {
         palette: "grad-blue",
         fill: "gradient",
       });
 
-      console.log(logo);
+      console.log() 
       console.log(chalk.cyan("🚀 SEOthing - Your Complete SEO Optimization Toolkit"));
       console.log(chalk.dim("Optimize images, generate meta tags, and boost your SEO!\n"));
 
