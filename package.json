@@ -1,6 +1,6 @@
 {
   "name": "seothing",
-  "version": "0.2.4",
+  "version": "0.2.16",
   "description": "This CLI tool converts images to WebP format and auto-updates all references for better web performance",
   "main": "index.js",
   "bin": {
@@ -12,20 +12,21 @@
     "analyzer"
   ],
   "dependencies": {
-    "oh-my-logo": "^0.1.0",
+    "@google/genai": "^1.9.0",
+    "@google/generative-ai": "^0.21.0",
+    "boxen": "^5.1.2",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0",
+    "cli-table3": "^0.6.3",
     "commander": "^11.0.0",
     "fs-extra": "^11.0.0",
-    "path": "^0.12.7",
-    "sharp": "^0.33.0",
     "glob": "^10.0.0",
-    "chalk": "^4.1.2",
-    "cli-table3": "^0.6.3",
     "inquirer": "^8.2.6",
-    "@google/generative-ai": "^0.21.0",
-    "cheerio": "^1.0.0",
+    "oh-my-logo": "^0.1.0",
     "open": "^8.4.2",
     "ora": "^5.4.1",
-    "boxen": "^5.1.2"
+    "path": "^0.12.7",
+    "sharp": "^0.33.0"
   },
   "engines": {
     "node": ">=14.0.0"

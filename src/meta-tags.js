@@ -1,6 +1,6 @@
 const fs = require("fs-extra");
 const path = require("path");
-const { GoogleGenAI } = require("@google/genai");
+const {GoogleGenAI} = require('@google/genai');
 const cheerio = require("cheerio");
 const chalk = require("chalk");
 const inquirer = require("inquirer");
@@ -76,8 +76,7 @@ const META_TAGS_CONFIG = {
 class MetaTagsAnalyzer {
   constructor(apiKey) {
     this.apiKey = apiKey;
-    console.log( "apiKey", this.apiKey);
-    this.genAI = new GoogleGenAI({ apiKey });
+    this.genAI = new GoogleGenAI({apiKey: this.apiKey});
   }
 
   async analyzeProject(directory) {
@@ -141,7 +140,7 @@ class MetaTagsAnalyzer {
       const keyFiles = await this.getKeyFilesContent(directory);
       
       // Use Gemini 2.5 Flash for analysis
-      const model = this.genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+      const model = "gemini-2.5-flash" ;
       
       const prompt = `
         Analyze this repository structure and content to understand the project:
@@ -162,8 +161,11 @@ class MetaTagsAnalyzer {
         Keep the response concise and focused on information that would be helpful for generating SEO meta tags.
       `;
 
-      const result = await model.generateContent(prompt);
-      const analysis = result.response.text();
+      const result = await this.genAI.models.generateContent({
+        model: model,
+        contents: prompt,
+      });
+      const analysis = result.text;
       
       spinner.succeed("Repository analysis complete!");
       return analysis;
@@ -261,7 +263,7 @@ class MetaTagsAnalyzer {
     
     try {
       // Use Gemini 2.5 Pro for more advanced meta tag generation
-      const model = this.genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
+      const model = "gemini-2.5-pro" ;
       
       const prompt = `
         You are an expert SEO specialist and web developer. Based on the following project analysis, generate optimized meta tags that will improve search engine rankings and click-through rates.
@@ -300,8 +302,11 @@ class MetaTagsAnalyzer {
         }
       `;
 
-      const result = await model.generateContent(prompt);
-      const response = result.response.text();
+      const result = await this.genAI.models.generateContent({
+        model: model,
+        contents: prompt,
+      });
+      const response = result.text;
       
       // Parse JSON response
       const jsonMatch = response.match(/\{[\s\S]*\}/);
