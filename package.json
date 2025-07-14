@@ -1,0 +1,29 @@
+{
+  "name": "seothing",
+  "version": "0.2.2",
+  "description": "This CLI tool converts images to WebP format and auto-updates all references for better web performance",
+  "main": "index.js",
+  "bin": {
+    "seothing": "./bin/cli.js"
+  },
+  "keywords": [
+    "cli",
+    "image",
+    "analyzer"
+  ],
+  "dependencies": {
+    "oh-my-logo": "^0.1.0",
+    "commander": "^11.0.0",
+    "fs-extra": "^11.0.0",
+    "path": "^0.12.7",
+    "sharp": "^0.33.0",
+    "glob": "^10.0.0",
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.3",
+    "inquirer": "^8.2.6"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "license": "MIT"
+}
