@@ -31,20 +31,35 @@ program
       });
 
       console.log() 
-      console.log(chalk.cyan("🚀 SEOthing - The Complete Toolkit to Skyrocket your Lighthouse Score."));
-      console.log(chalk.dim("Optimize images, generate meta tags, and boost your SEO!\n"));
+      console.log(chalk.cyan("Welcome to SEOthing!"));
+      console.log(chalk.dim("This tool optimizes images, generates meta tags, and boosts your SEO to skyrocket your Lighthouse Score.\n"));
 
       // Determine what to process
       const shouldProcessImages = options.images || options.all || (!options.meta && !options.images);
-      const shouldProcessMeta = options.meta || options.all;
+      const shouldProcessMeta = options.meta || options.all || (!options.meta && !options.images);
 
       if (shouldProcessImages) {
-        console.log(chalk.yellow("📸 Processing Images..."));
-        await analyzeImages(directory, options);
+        const { confirm } = await inquirer.prompt([
+          {
+            type: "confirm",
+            name: "confirm",
+            message: "Let's get started with optimizing your images. Do you want to proceed?",
+            default: true,
+          }
+        ]);
+
+        if (!confirm) {
+          console.log(chalk.yellow("\nSkipping image optimization, and moving on to meta tag generation."));
+          console.log(chalk.dim("You can always run `npx seothing --images` to optimize your images later."));
+        }
+        else {
+          console.log(chalk.yellow("\n📸 Processing Images..."));
+          await analyzeImages(directory, options);
+        }
       }
 
       if (shouldProcessMeta) {
-        console.log(chalk.yellow("🏷️ Processing Meta Tags..."));
+        console.log(chalk.yellow("\n🏷️ Processing Meta Tags..."));
         await processMetaTags(directory, options);
       }
 
@@ -66,7 +81,7 @@ async function processMetaTags(directory, options) {
       {
         type: "password",
         name: "inputApiKey",
-        message: "Enter your Google Gemini API key:",
+        message: "Enter your Google Gemini API Key (Get it for Free at https://aistudio.google.com/app/apikey):",
         mask: "*",
         validate: (input) => {
           if (!input.trim()) {
