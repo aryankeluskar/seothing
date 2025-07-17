@@ -1,6 +1,6 @@
 {
   "name": "seothing",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "This CLI tool converts images to WebP format and auto-updates all references for better web performance",
   "main": "index.js",
   "bin": {
