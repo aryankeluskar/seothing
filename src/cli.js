@@ -32,7 +32,7 @@ program
 
       console.log() 
       console.log(chalk.cyan("Welcome to SEOthing!"));
-      console.log(chalk.dim("This tool optimizes images, generates meta tags, and boosts your SEO to skyrocket your Lighthouse Score.\n"));
+      console.log(chalk.dim("This tool optimizes your images, generates meta tags, and boosts your SEO to skyrocket your Lighthouse Score.\n"));
 
       // Determine what to process
       const shouldProcessImages = options.images || options.all || (!options.meta && !options.images);

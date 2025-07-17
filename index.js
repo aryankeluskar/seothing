@@ -34,9 +34,6 @@ const CODE_EXTENSIONS = [
 
 async function analyzeImages(directory, options) {
   try {
-    console.log(
-      "Welcome to SEOthing! This is a CLI tool to convert images to WebP format and auto-update references for better web performance.",
-    );
     console.log(`\n🔍 Finding images in: ${path.resolve(directory)}`);
 
     // Check if directory exists

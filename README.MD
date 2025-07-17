@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/aryankeluskar/seothing/refs/heads/master/assets/SEOthing.png" alt="SEOthing Banner" />
+<img src="https://raw.githubusercontent.com/aryankeluskar/seothing/refs/heads/master/assets/SEOthing.webp" alt="SEOthing Banner" />
 </div>
 
 <h2 align="center">Comprehensive SEO CLI tool that converts images to WebP format, generates AI-powered meta tags, and optimizes your website for better search engine performance.</h2>
@@ -11,18 +11,8 @@
 <img alt="weekly downloads from npm" src="https://img.shields.io/npm/dw/seothing.svg?style=flat-square"></a>
 <a href="https://x.com/intent/follow?screen_name=aryankeluscar">
 <img alt="Follow Aryan on X" src="https://img.shields.io/badge/%40aryankeluscar-9f9f9f?style=flat-square&logo=x&labelColor=555"></a>
+<a href="https://deepwiki.com/aryankeluskar/seothing"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 </p>
-
-## ✨ Features
-
-- 🖼️ **Image Optimization**: Convert images to WebP format with automatic reference updates
-- 🏷️ **AI-Powered Meta Tags**: Generate SEO-optimized meta tags using Google Gemini 2.5 Flash/Pro
-- 🔍 **Project Analysis**: Automatic detection of project type (React, Vue, Angular, WordPress, etc.)
-- 📱 **Mobile Optimization**: Automatic viewport meta tag injection
-- 🔗 **Social Media Ready**: Open Graph tags for better social sharing
-- 🎯 **SEO Best Practices**: Follows Google Lighthouse SEO recommendations
-- 🌐 **Meta Tags Preview**: Preview your meta tags with metatags.io integration
-- 💻 **Interactive CLI**: User-friendly interface with editing capabilities
 
 ## Installation
 
@@ -36,6 +26,155 @@ npm install -g seothing
 
 ```bash
 npx seothing [directory] [options]
+```
+
+
+### Example Output
+
+```
+aryank@Aryans-MacBook-Air aryankeluskar.com % npx seothing
+
+Welcome to SEOthing!
+This tool optimizes images, generates meta tags, and boosts your SEO to skyrocket your Lighthouse Score.
+
+? Let's get started with optimizing your images. Do you want to proceed? Yes
+
+📸 Processing Images...
+Welcome to SEOthing! This is a CLI tool to convert images to WebP format and auto-update references for better web performance.
+
+🔍 Finding images in: /Users/aryank/Developer/aryankeluskar.com
+
+📸 Found 11 convertible image file(s):
+
+┌──────────────────────────┬────────┬────────────┬────────────┬────────────┐
+│ File                     │ Type   │ Original   │ WebP       │ Savings    │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/some pfp.jpg      │ JPG    │ 8.34 KB    │ 2.95 KB    │ 65%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/professional.jpg  │ JPG    │ 168.74 KB  │ 57.17 KB   │ 66%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/pfp.jpg           │ JPG    │ 74.28 KB   │ 25.57 KB   │ 66%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/buildspace.jpg    │ JPG    │ 12.53 KB   │ 4.01 KB    │ 68%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/hometowns/dadar.… │ JPG    │ 6.13 KB    │ 2.35 KB    │ 62%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/rcv.jpeg          │ JPEG   │ 10.98 KB   │ 3.79 KB    │ 65%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/healthgc.jpeg     │ JPEG   │ 6.51 KB    │ 2.34 KB    │ 64%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/mag.png           │ PNG    │ 275.56 KB  │ 15.25 KB   │ 94%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/good pfp blur.png │ PNG    │ 3.62 MB    │ 185.14 KB  │ 95%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/cropped-asu-icon… │ PNG    │ 27.34 KB   │ 1.58 KB    │ 94%        │
+├──────────────────────────┼────────┼────────────┼────────────┼────────────┤
+│ public/banner.png        │ PNG    │ 203.85 KB  │ 14.06 KB   │ 93%        │
+└──────────────────────────┴────────┴────────────┴────────────┴────────────┘
+
+📝 Summary:
+   Total original size: 4.39 MB
+   Total WebP size: 314.21 KB (predicted)
+   Total space saved: 4.08 MB (93%)
+
+
+? Do you want to proceed with converting these files? Yes
+
+Starting conversion...
+
+📸 Converting images...
+
+   ✅ public/some pfp.jpg → public/some pfp.webp (-7% smaller)
+   ✅ public/professional.jpg → public/professional.webp (60% smaller)
+   ✅ public/pfp.jpg → public/pfp.webp (-6% smaller)
+   ✅ public/buildspace.jpg → public/buildspace.webp (57% smaller)
+   ✅ public/hometowns/dadar.jpg → public/hometowns/dadar.webp (38% smaller)
+   ✅ public/rcv.jpeg → public/rcv.webp (66% smaller)
+   ✅ public/healthgc.jpeg → public/healthgc.webp (72% smaller)
+   ✅ public/mag.png → public/mag.webp (89% smaller)
+   ✅ public/good pfp blur.png → public/good pfp blur.webp (94% smaller)
+   ✅ public/cropped-asu-icon.png → public/cropped-asu-icon.webp (59% smaller)
+   ✅ public/banner.png → public/banner.webp (73% smaller)
+
+Updating image references in code files...
+📋 Found 48 code files to check for references
+   ✅ Updated 1 reference(s) in src/app/gcsp/index.html
+   ✅ Updated 2 reference(s) in src/app/gcsp/furi.html
+   ✅ Updated 1 reference(s) in src/app/gcsp/fse150.html
+   ✅ Updated 4 reference(s) in src/data/resume.tsx
+   ✅ Updated 1 reference(s) in src/components/hometown-section.tsx
+   ✅ Updated 2 reference(s) in src/app/layout.tsx
+
+Total references updated: 11
+
+✅ Processing complete!
+
+🏷️ Processing Meta Tags...
+? Enter your Google Gemini API Key (Get it for Free at 
+https://aistudio.google.com/app/apikey): ***************************************
+
+🔍 Analyzing project structure...
+✅ Detected project type: react
+✔ Repository analysis complete!
+✔ Meta tags generated successfully!
+
+📝 AI-Generated Meta Tags - Edit each field:
+Saving field: keywords, value: Aryan Keluskar, Software Engineer, Web Developer, Next.js Developer, React Developer, Portfolio, TypeScript, Resume, Full Stack Developer, FURI
+Moving to next field: 1
+Saving field: title, value: Aryan Keluskar | Software Engineer & Web Developer
+Moving to next field: 2
+Saving field: description, value: Explore the portfolio of Aryan Keluskar, a software engineer specializing in Next.js & React. Discover innovative projects, research, and technical articles.
+Moving to next field: 3
+Saving field: ogTitle, value: Aryan Keluskar | Software Engineer & Web Developer Portfolio
+Moving to next field: 4
+Saving field: ogDescription, value: Dive into the work of Aryan Keluskar. I build dynamic web apps with Next.js & React and conduct academic research. Check out my projects, resume, and blog.
+Moving to next field: 5
+Saving field: canonicalPattern, value: https://aryankeluskar.com/
+All fields completed, final tags: {
+  keywords: [
+    'Aryan Keluskar',
+    'Software Engineer',
+    'Web Developer',
+    'Next.js Developer',
+    'React Developer',
+    'Portfolio',
+    'TypeScript',
+    'Resume',
+    'Full Stack Developer',
+    'FURI'
+  ],
+  title: 'Aryan Keluskar | Software Engineer & Web Developer',
+  description: 'Explore the portfolio of Aryan Keluskar, a software engineer specializing in Next.js & React. Discover innovative projects, research, and technical articles.',
+  ogTitle: 'Aryan Keluskar | Software Engineer & Web Developer Portfolio',
+  ogDescription: 'Dive into the work of Aryan Keluskar. I build dynamic web apps with Next.js & React and conduct academic research. Check out my projects, resume, and blog.',
+  canonicalPattern: 'https://aryankeluskar.com/',
+  reasoning: "The strategy focuses on establishing 'Aryan Keluskar' as the primary brand keyword, immediately followed by high-value professional titles like 'Software Engineer' to attract recruiters. The description uses action-oriented verbs ('Explore', 'Discover') to entice clicks and highlights the core tech stack (Next.js, React) and key value propositions (projects, research). The Open Graph tags are slightly more conversational for social media sharing while maintaining professional context. The canonical pattern ensures that each page (e.g., /resume, /blog/post-name) is indexed as a unique entity, preventing duplicate content issues and consolidating link equity to the preferred URL."
+}
+
+ 📝 AI-Generated Meta Tags - Edit each field (6/6)
+
+
+  Canonical URL Pattern (26 characters)
+
+  ╭────────────────────────────────────────────────────────────────────────╮
+  │                                                                        │
+  │ https://aryankeluskar.com/                                             │
+  │                                                                        │
+  │                                                                        │
+  │                                                                        │
+  ╰────────────────────────────────────────────────────────────────────────╯
+
+  Type to edit • Press Enter to save and continue • Escape to cancel
+
+
+ Progress: [██████]
+
+✅ Meta tags updated!
+
+🔗 You can now preview your meta tags in metatags.io
+✅ To see your meta tags in action, open https://metatags.io in your browser.
+Publish your website, and then paste your website's URL there to see a preview.
+
 ```
 
 ### Image Optimization Only
@@ -52,15 +191,25 @@ npx seothing --images --write --replace  # Convert and remove original files
 ```bash
 npx seothing --meta                      # Generate meta tags (requires API key)
 npx seothing --meta --write              # Generate and apply meta tags
-npx seothing --meta --api-key YOUR_KEY  # Provide API key directly
+npx seothing --meta --api-key YOUR_KEY   # Provide Google Gemini API key directly
 ```
 
 ### Complete SEO Optimization
 
 ```bash
-npx seothing --all                       # Process both images and meta tags
-npx seothing --all --write               # Apply all optimizations
+npx seothing
 ```
+<!-- 
+## Features
+
+- **Image Optimization**: Convert images to WebP format with automatic reference updates
+- **AI-Powered Meta Tags**: Generate SEO-optimized meta tags using Google Gemini 2.5 Flash/Pro
+- **Project Analysis**: Automatic detection of project type (React, Vue, Angular, WordPress, etc.)
+- **Mobile Optimization**: Automatic viewport meta tag injection
+- **Social Media Ready**: Open Graph tags for better social sharing
+- **SEO Best Practices**: Follows Google Lighthouse SEO recommendations
+- **Meta Tags Preview**: Preview your meta tags with metatags.io integration
+- **Interactive CLI**: User-friendly interface with editing capabilities -->
 
 ## Command Line Options
 
@@ -72,88 +221,6 @@ npx seothing --all --write               # Apply all optimizations
 | `-m, --meta` | Generate meta tags only |
 | `-a, --all` | Process both images and meta tags |
 | `--api-key <key>` | Google Gemini API key for meta tag generation |
-
-## Meta Tags Features
-
-### 🤖 AI-Powered Generation
-
-SEOthing uses Google Gemini 2.5 Flash and Pro to:
-- Analyze your project structure and content
-- Generate compelling, SEO-optimized titles and descriptions
-- Apply human psychology and marketing principles
-- Create unique meta tags tailored to your project
-
-### 🎯 SEO Best Practices
-
-- **Title Tags**: 50-60 characters, keyword-optimized
-- **Meta Descriptions**: 150-160 characters, click-worthy
-- **Viewport Tags**: Mobile-friendly responsive design
-- **Canonical Tags**: Prevent duplicate content issues
-- **Open Graph Tags**: Optimized social media sharing
-
-### 📱 Project Type Detection
-
-Automatically detects and optimizes for:
-- React, Vue, Angular applications
-- Next.js, Nuxt.js, Gatsby sites
-- WordPress installations
-- Static HTML websites
-- Astro, Svelte projects
-
-## Getting Started with Meta Tags
-
-1. **Get a Google Gemini API Key**
-   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-   - Create a free API key
-
-2. **Run SEOthing**
-   ```bash
-   npx seothing --meta
-   ```
-
-3. **Enter your API key when prompted**
-
-4. **Review and edit the generated meta tags**
-
-5. **Apply changes**
-   ```bash
-   npx seothing --meta --write
-   ```
-
-6. **Preview your meta tags**
-   - Use the generated metatags.io preview URL
-   - Open directly in browser or copy the link
-
-## Example Output
-
-```
-🚀 SEOthing - Your Complete SEO Optimization Toolkit
-Optimize images, generate meta tags, and boost your SEO!
-
-🔍 Analyzing project structure...
-✅ Detected project type: react
-
-🏷️ Processing Meta Tags...
-⠋ Analyzing repository with Gemini 2.5 Flash...
-✅ Repository analysis complete!
-⠋ Generating meta tags with Gemini 2.5 Pro...
-✅ Meta tags generated successfully!
-
-┌─────────────────────────────────────────────────────┐
-│                                                     │
-│  🎉 AI-Generated Meta Tags Preview                 │
-│                                                     │
-│  Title: SEOthing - AI-Powered SEO Optimization     │
-│  Description: Boost your website's SEO with AI-    │
-│  generated meta tags and WebP image optimization.  │
-│                                                     │
-│  Reasoning: Focused on value proposition and       │
-│  compelling call-to-action for developers          │
-│                                                     │
-└─────────────────────────────────────────────────────┘
-
-? Would you like to edit these meta tags? (y/N)
-```
 
 ## Project Structure
 
@@ -167,35 +234,9 @@ seothing/
 └── README.MD
 ```
 
-## API Reference
-
-### MetaTagsAnalyzer Class
-
-```javascript
-const { MetaTagsAnalyzer } = require('seothing/lib/meta-tags');
-
-const analyzer = new MetaTagsAnalyzer(apiKey);
-
-// Analyze project
-const analysis = await analyzer.analyzeProject('./my-project');
-
-// Generate meta tags
-const tags = await analyzer.generateMetaTags(analysis);
-
-// Apply meta tags
-await analyzer.applyMetaTags(analysis, tags);
-```
-
 ## Supported Project Types
 
-- **React**: `public/index.html`, `build/index.html`
-- **Vue**: `public/index.html`, `dist/index.html`
-- **Angular**: `src/index.html`, `dist/index.html`
-- **Next.js**: `pages/_document.js`, `pages/_app.js`
-- **WordPress**: `index.php`, `header.php`, `functions.php`
-- **Static HTML**: `index.html`, `*.html`
-- **Gatsby**: `src/html.js`, `public/index.html`
-- **Astro**: `src/layouts/*.astro`
+**React**, **Vue**, **Angular**, **Next.js**, **WordPress**, **Static HTML**, **Gatsby**, **Astro**
 
 ## Requirements
 
@@ -204,17 +245,11 @@ await analyzer.applyMetaTags(analysis, tags);
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit Issues or Pull Requests.
 
 ## License
 
 MIT License - see LICENSE file for details.
-
-## Support
-
-- 🐛 [Report Issues](https://github.com/aryankeluskar/seothing/issues)
-- 💬 [Discussions](https://github.com/aryankeluskar/seothing/discussions)
-- 📧 [Contact](mailto:aryan@keluskar.com)
 
 ---
 
