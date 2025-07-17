@@ -336,81 +336,83 @@ class MetaTagsAnalyzer {
   }
 
   async presentMetaTagsEditor(generatedTags) {
-    console.log(boxen(
-      chalk.green("🎉 AI-Generated Meta Tags Preview\n\n") +
-      chalk.yellow("Title: ") + generatedTags.title + "\n" +
-      chalk.yellow("Description: ") + generatedTags.description + "\n\n" +
-      chalk.cyan("Reasoning: ") + generatedTags.reasoning,
+    console.log(chalk.cyan("\n📝 Here are the AI-generated meta tags:"));
+
+    const previewBox = boxen(
+      Object.entries(generatedTags)
+        .map(([key, value]) => `${chalk.bold(key)}: ${value}`)
+        .join("\n"),
       {
         padding: 1,
         margin: 1,
         borderStyle: "round",
-        borderColor: "green"
+        borderColor: "blue",
+        title: "AI-Generated Meta Tags",
+        titleAlignment: "center"
       }
-    ));
+    );
+
+    console.log(previewBox);
 
     const { shouldEdit } = await inquirer.prompt([
-      {
-        type: "confirm",
-        name: "shouldEdit",
-        message: "Would you like to edit these meta tags?",
-        default: false
-      }
+        {
+            type: 'confirm',
+            name: 'shouldEdit',
+            message: 'Do you want to edit these tags?',
+            default: false,
+        }
     ]);
 
     if (shouldEdit) {
-      return await this.editMetaTags(generatedTags);
+        const editedTags = await this.editMetaTags(generatedTags);
+        console.log(chalk.green("✅ Meta tags updated!"));
+        return editedTags;
     }
 
+    console.log(chalk.green("✅ Meta tags confirmed!"));
     return generatedTags;
   }
 
   async editMetaTags(tags) {
-    const questions = [
-      {
-        type: "input",
-        name: "title",
-        message: `Title (${tags.title.length}/60 chars):`,
-        default: tags.title,
-        validate: (input) => {
-          if (input.length > 60) {
-            return "Title should be 60 characters or less";
-          }
-          return true;
-        }
-      },
-      {
-        type: "input",
-        name: "description",
-        message: `Description (${tags.description.length}/160 chars):`,
-        default: tags.description,
-        validate: (input) => {
-          if (input.length > 160) {
-            return "Description should be 160 characters or less";
-          }
-          return true;
-        }
-      },
-      {
-        type: "input",
-        name: "ogTitle",
-        message: "Open Graph Title:",
-        default: tags.ogTitle
-      },
-      {
-        type: "input",
-        name: "ogDescription",
-        message: "Open Graph Description:",
-        default: tags.ogDescription
-      }
-    ];
+    const tagsString = Object.entries(tags)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join("\n");
 
-    const editedTags = await inquirer.prompt(questions);
-    
-    return {
-      ...tags,
-      ...editedTags
-    };
+    const { editedTagsStr } = await inquirer.prompt([
+      {
+        type: "editor",
+        name: "editedTagsStr",
+        message: "Edit the meta tags. Save and close the editor when you are done.",
+        default: tagsString,
+        validate: (text) => {
+            try {
+                text.split('\n').forEach(line => {
+                    if (line.trim() && !line.includes(':')) {
+                        throw new Error(`Invalid format. Each line should be in 'key: value' format. Problem line: "${line}"`);
+                    }
+                });
+                return true;
+            } catch (e) {
+                return e.message;
+            }
+        }
+      },
+    ]);
+
+    // Parse the edited string back into an object
+    const editedTags = {};
+    editedTagsStr.split('\n').forEach(line => {
+        if (line.trim()) {
+            const parts = line.split(':');
+            const key = parts[0].trim();
+            const value = parts.slice(1).join(':').trim();
+            if (key) { // Ensure key is not empty
+              editedTags[key] = value;
+            }
+        }
+    });
+
+    return editedTags;
   }
 
   async applyMetaTags(projectAnalysis, metaTags) {
@@ -478,58 +480,36 @@ class MetaTagsAnalyzer {
   }
 
   updateOpenGraphTags($, metaTags) {
-    const ogTags = {
-      "og:title": metaTags.ogTitle,
-      "og:description": metaTags.ogDescription,
-      "og:type": "website"
-    };
-    
-    for (const [property, content] of Object.entries(ogTags)) {
-      if ($(`meta[property="${property}"]`).length > 0) {
-        $(`meta[property="${property}"]`).attr("content", content);
-      } else {
-        $("head").append(`<meta property="${property}" content="${content}">`);
+    for (const [property, config] of Object.entries(META_TAGS_CONFIG.openGraph)) {
+      const value = metaTags[property];
+      if (value) {
+        let tag = $(`meta[property="${property}"]`);
+        if (tag.length) {
+          tag.attr("content", value);
+        } else {
+          $("head").append(`\n  <meta property="${property}" content="${value}">`);
+        }
       }
     }
   }
 
   async showMetaTagsPreview(metaTags, projectAnalysis) {
-    const previewUrl = `https://metatags.io/?url=${encodeURIComponent(metaTags.canonicalPattern || "https://example.com")}`;
-    
-    console.log(boxen(
-      chalk.cyan("🔗 Meta Tags Preview\n\n") +
-      chalk.yellow("Preview URL: ") + previewUrl + "\n\n" +
-      chalk.green("✅ Title: ") + metaTags.title + "\n" +
-      chalk.green("✅ Description: ") + metaTags.description + "\n" +
-      chalk.green("✅ Open Graph: ") + "Configured\n" +
-      chalk.green("✅ Canonical: ") + (metaTags.canonicalPattern || "Not set"),
-      {
-        padding: 1,
-        margin: 1,
-        borderStyle: "double",
-        borderColor: "cyan"
-      }
-    ));
+    console.log(chalk.cyan("\n🔗 Live Preview:"));
 
-    const { action } = await inquirer.prompt([
+    const { openPreview } = await inquirer.prompt([
       {
-        type: "list",
-        name: "action",
-        message: "What would you like to do?",
-        choices: [
-          { name: "🌐 Open preview in browser", value: "browser" },
-          { name: "📋 Copy preview URL", value: "copy" },
-          { name: "✅ Continue", value: "continue" }
-        ]
+        type: "confirm",
+        name: "openPreview",
+        message: "Open metatags.io to preview how your site will look on search engines?",
+        default: true
       }
     ]);
 
-    if (action === "browser") {
+    if (openPreview) {
+      const previewUrl = `https://metatags.io/`;
       await open(previewUrl);
-    } else if (action === "copy") {
-      // Copy to clipboard (simplified for now)
-      console.log(chalk.green("Preview URL copied to clipboard!"));
-      console.log(chalk.dim(previewUrl));
+      console.log(chalk.green(`✅ Opened metatags.io in your browser.`));
+      console.log(chalk.dim(`Paste your website's URL there to see a preview.`));
     }
   }
 }
