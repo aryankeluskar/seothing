@@ -31,7 +31,7 @@ program
       });
 
       console.log() 
-      console.log(chalk.cyan("🚀 SEOthing - Your Complete SEO Optimization Toolkit"));
+      console.log(chalk.cyan("🚀 SEOthing - The Complete Toolkit to Skyrocket your Lighthouse Score."));
       console.log(chalk.dim("Optimize images, generate meta tags, and boost your SEO!\n"));
 
       // Determine what to process
