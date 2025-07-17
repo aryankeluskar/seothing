@@ -2,7 +2,7 @@
 <img src="https://raw.githubusercontent.com/aryankeluskar/seothing/refs/heads/master/assets/SEOthing.webp" alt="SEOthing Banner" />
 </div>
 
-<h2 align="center">CLI tool to skyrocket your SEO score by converting images to WebP format, generating meta tags, and optimizing your website for better performance.</h2>
+<h2 align="center">CLI tool to skyrocket your SEO score by converting images to WebP format, generating meta tags, and optimizing for better performance.</h2>
 
 <p align="center">
 <a href="https://www.npmjs.com/package/seothing">
@@ -21,6 +21,10 @@ npm install -g seothing
 ```
 
 ## Usage
+
+<div align="center">
+<img src="https://raw.githubusercontent.com/aryankeluskar/seothing/refs/heads/master/assets/image.webp" alt="Before vs After" />
+</div>
 
 ### Basic Usage
 
