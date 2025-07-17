@@ -2,7 +2,7 @@
 <img src="https://raw.githubusercontent.com/aryankeluskar/seothing/refs/heads/master/assets/SEOthing.webp" alt="SEOthing Banner" />
 </div>
 
-<h2 align="center">Comprehensive SEO CLI tool that converts images to WebP format, generates AI-powered meta tags, and optimizes your website for better search engine performance.</h2>
+<h2 align="center">CLI tool to skyrocket your SEO score by converting images to WebP format, generating meta tags, and optimizing your website for better performance.</h2>
 
 <p align="center">
 <a href="https://www.npmjs.com/package/seothing">
