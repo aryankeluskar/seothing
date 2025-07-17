@@ -3,7 +3,7 @@ const { useState, useEffect } = React;
 const { Box, Text, useApp } = require('ink');
 const EditableTextBox = require('./EditableTextBox');
 
-const MetaTagsEditor = ({ generatedTags, onComplete }) => {
+function MetaTagsEditor({ generatedTags, onComplete }) {
   const { exit } = useApp();
   const [currentFieldIndex, setCurrentFieldIndex] = useState(0);
   const [editedTags, setEditedTags] = useState({});
@@ -110,6 +110,6 @@ const MetaTagsEditor = ({ generatedTags, onComplete }) => {
       )
     )
   ].filter(Boolean));
-};
+}
 
 module.exports = MetaTagsEditor;
