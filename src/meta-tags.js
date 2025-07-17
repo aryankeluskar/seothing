@@ -231,14 +231,14 @@ class MetaTagsAnalyzer {
     
     // Define search patterns based on project type
     const searchPatterns = {
-      react: ["public/index.html", "build/index.html"],
-      vue: ["public/index.html", "dist/index.html"],
-      angular: ["src/index.html", "dist/index.html"],
-      nextjs: ["pages/_document.js", "pages/_app.js", "app/layout.js"],
-      nuxt: ["app.html", "layouts/default.vue"],
+      react: ["index.html", "public/index.html", "build/index.html"],
+      vue: ["index.html", "public/index.html", "dist/index.html"],
+      angular: ["src/index.html", "dist/index.html", "index.html"],
+      nextjs: ["pages/_document.js", "pages/_app.js", "app/layout.js", "src/app/layout.js", "index.html"],
+      nuxt: ["app.html", "layouts/default.vue", "src/layouts/default.vue"],
       wordpress: ["index.php", "header.php", "functions.php"],
       html: ["index.html", "*.html"],
-      gatsby: ["src/html.js", "public/index.html"],
+      gatsby: ["src/html.js", "public/index.html", "src/pages/index.js"],
       astro: ["src/layouts/*.astro", "public/index.html"]
     };
     
