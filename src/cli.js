@@ -91,13 +91,8 @@ async function processMetaTags(directory, options) {
     // Step 3: Present tags to user for editing
     const finalTags = await analyzer.presentMetaTagsEditor(generatedTags);
     
-    // Step 4: Apply meta tags (if in write mode)
-    if (options.write) {
-      await analyzer.applyMetaTags(projectAnalysis, finalTags);
-    } else {
-      console.log(chalk.yellow("\n👁️ Preview Mode - Meta tags generated but not applied"));
-      console.log(chalk.dim("Run with --write flag to apply the meta tags to your files"));
-    }
+    // Step 4: Apply meta tags (regardless of write mode)
+    await analyzer.applyMetaTags(projectAnalysis, finalTags);
     
     // Step 5: Show preview link
     await analyzer.showMetaTagsPreview(finalTags, projectAnalysis);

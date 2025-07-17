@@ -7,7 +7,7 @@ const inquirer = require("inquirer");
 const open = require("open");
 const ora = require("ora");
 const boxen = require("boxen");
-const blessed = require("blessed");
+const { runMetaTagsEditor } = require("./components/MetaTagsApp");
 
 // Project type detection patterns
 const PROJECT_PATTERNS = {
@@ -339,163 +339,17 @@ class MetaTagsAnalyzer {
   async presentMetaTagsEditor(generatedTags) {
     console.log(chalk.cyan("\n📝 AI-Generated Meta Tags - Edit each field:"));
 
-    const editedTags = {};
-    
-    // Field definitions with display names
-    const fields = [
-      { key: 'title', label: 'Title', maxLength: 60 },
-      { key: 'description', label: 'Description', maxLength: 160 },
-      { key: 'ogTitle', label: 'Open Graph Title', maxLength: 60 },
-      { key: 'ogDescription', label: 'Open Graph Description', maxLength: 160 },
-      { key: 'canonicalPattern', label: 'Canonical URL Pattern', maxLength: 200 }
-    ];
-
-    // Handle keywords array separately
-    if (generatedTags.keywords) {
-      const keywordsString = Array.isArray(generatedTags.keywords) 
-        ? generatedTags.keywords.join(', ')
-        : generatedTags.keywords;
-      
-      editedTags.keywords = await this.editFieldInTerminal('Keywords', keywordsString, 100);
-      editedTags.keywords = editedTags.keywords.split(',').map(k => k.trim()).filter(k => k);
+    try {
+      const editedTags = await runMetaTagsEditor(generatedTags);
+      console.log(chalk.green("✅ Meta tags updated!"));
+      return editedTags;
+    } catch (error) {
+      console.error(chalk.red("❌ Error in meta tags editor:"), error.message);
+      // Fallback to original tags if editor fails
+      return generatedTags;
     }
-
-    // Process each field one by one
-    for (const field of fields) {
-      if (generatedTags[field.key]) {
-        editedTags[field.key] = await this.editFieldInTerminal(
-          field.label, 
-          generatedTags[field.key], 
-          field.maxLength
-        );
-      }
-    }
-
-    // Keep reasoning as-is (non-editable)
-    if (generatedTags.reasoning) {
-      editedTags.reasoning = generatedTags.reasoning;
-    }
-
-    console.log(chalk.green("✅ Meta tags updated!"));
-    return editedTags;
   }
 
-  async editFieldInTerminal(label, initialValue, maxLength) {
-    return new Promise((resolve) => {
-      // Create a blessed screen
-      const screen = blessed.screen({
-        smartCSR: true,
-        title: `Edit ${label}`,
-        autoPadding: true,
-        dockBorders: true
-      });
-
-      // Create the main container
-      const container = blessed.box({
-        parent: screen,
-        top: 'center',
-        left: 'center',
-        width: '80%',
-        height: '50%',
-        border: {
-          type: 'line'
-        },
-        style: {
-          border: {
-            fg: 'blue'
-          }
-        }
-      });
-
-      // Create header text
-      const header = blessed.text({
-        parent: container,
-        top: 0,
-        left: 'center',
-        content: `${label} (${maxLength} chars max)`,
-        style: {
-          fg: 'cyan',
-          bold: true
-        }
-      });
-
-      // Create character counter
-      const counter = blessed.text({
-        parent: container,
-        top: 1,
-        right: 1,
-        content: `${initialValue.length}/${maxLength}`,
-        style: {
-          fg: initialValue.length > maxLength ? 'red' : 'green'
-        }
-      });
-
-      // Create the editable textbox
-      const textbox = blessed.textarea({
-        parent: container,
-        top: 3,
-        left: 1,
-        right: 1,
-        bottom: 3,
-        keys: true,
-        mouse: true,
-        inputOnFocus: true,
-        content: initialValue,
-        style: {
-          fg: 'white',
-          bg: 'black',
-          focus: {
-            fg: 'white',
-            bg: 'blue'
-          }
-        },
-        border: {
-          type: 'line'
-        }
-      });
-
-      // Create instructions
-      const instructions = blessed.text({
-        parent: container,
-        bottom: 0,
-        left: 'center',
-        content: 'Press Ctrl+S to save and continue, Ctrl+C to cancel',
-        style: {
-          fg: 'yellow'
-        }
-      });
-
-      // Update character counter on input
-      textbox.on('value', (value) => {
-        counter.setContent(`${value.length}/${maxLength}`);
-        counter.style.fg = value.length > maxLength ? 'red' : 'green';
-        screen.render();
-      });
-
-      // Handle save (Ctrl+S)
-      screen.key(['C-s'], () => {
-        const value = textbox.getValue();
-        screen.destroy();
-        resolve(value);
-      });
-
-      // Handle cancel (Ctrl+C)
-      screen.key(['C-c'], () => {
-        screen.destroy();
-        resolve(initialValue); // Return original value on cancel
-      });
-
-      // Handle escape
-      screen.key(['escape'], () => {
-        screen.destroy();
-        resolve(initialValue);
-      });
-
-      // Focus the textbox and render
-      textbox.focus();
-      screen.render();
-    });
-  }
 
   async editMetaTags(tags) {
     const tagsString = Object.entries(tags)
@@ -618,12 +472,9 @@ class MetaTagsAnalyzer {
   }
 
   async showMetaTagsPreview(metaTags, projectAnalysis) {
-    console.log(chalk.cyan("\n🔗 Opening metatags.io for live preview..."));
-    
-    const previewUrl = `https://metatags.io/`;
-    await open(previewUrl);
-    console.log(chalk.green(`✅ Opened metatags.io in your browser.`));
-    console.log(chalk.dim(`Paste your website's URL there to see a preview.`));
+    console.log(chalk.cyan("\n🔗 You can now preview your meta tags in metatags.io"));
+    console.log(chalk.green(`✅ To see your meta tags in action, open https://metatags.io in your browser.`));
+    console.log(chalk.green(`Publish your website, and then paste your website's URL there to see a preview.`));
   }
 }
 
