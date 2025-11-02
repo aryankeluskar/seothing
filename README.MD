@@ -9,8 +9,8 @@
 <img alt="npm version" src="https://img.shields.io/npm/v/seothing.svg?style=flat-square"></a>
 <a href="https://www.npmjs.com/package/seothing">
 <img alt="weekly downloads from npm" src="https://img.shields.io/npm/dw/seothing.svg?style=flat-square"></a>
-<a href="https://x.com/intent/follow?screen_name=aryankeluscar">
-<img alt="Follow Aryan on X" src="https://img.shields.io/badge/%40aryankeluscar-9f9f9f?style=flat-square&logo=x&labelColor=555"></a>
+<a href="https://x.com/intent/follow?screen_name=soydotrun">
+<img alt="Follow Aryan on X" src="https://img.shields.io/badge/%40soydotrun-9f9f9f?style=flat-square&logo=x&labelColor=555"></a>
 <a href="https://deepwiki.com/aryankeluskar/seothing"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 </p>
 
